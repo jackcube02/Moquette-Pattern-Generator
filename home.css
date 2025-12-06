@@ -1,0 +1,239 @@
+ body{
+            margin: 0;
+        }
+
+        #wrap {
+    margin: 0px;
+    min-height: 100vh; /* 화면 전체 높이 확보 */
+    display: flex;     /* 플렉스 박스 적용 */
+    flex-direction: column; /* 세로 방향 정렬 */
+}
+
+        a{
+            color: black;
+            text-decoration: none;
+        }
+        
+        #header{
+            display:flex;
+            justify-content: space-between;
+            margin: 20px 20px 0 20px;
+            font-family: "Pretendard", sans-serif;
+
+        }
+
+        .header-logo{
+            font-size: 12rem;
+            font-weight: 900;
+            font-family: "Pretendard", sans-serif;
+            cursor: pointer;
+        }
+
+        .header-nav{
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .header-nav a{
+            background-color: rgb(16, 16, 16);
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .header-nav a:hover{
+            /* transition: 0.5s; */
+            background-color: rgb(255, 255, 255);
+            color: rgb(0, 0, 0);
+            padding: 5px;
+            border-radius: 5px;
+            border: 2px solid black;
+        }
+
+        #main {
+            flex: 1; /* 남은 빈 공간을 이 친구가 다 먹습니다 */
+            
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            column-gap: 5px;
+            row-gap: 5px; /* (선택) 가로 간격처럼 세로 간격도 5px 주고 싶다면 추가 */
+            
+            /* 중요: 내용물이 적어도 그리드 행 높이를 균등하게 늘림 */
+            align-content: stretch; 
+}
+
+        .grid-content {
+            width: 100%;
+            height: 100%; /* 부모(그리드 셀) 높이에 맞춤 */
+            overflow: hidden; /* 이미지가 튀어나오지 않게 */
+}
+
+        .grid-content img {
+            width: 100%;
+            height: 100%;       /* 높이 강제 적용 */
+            object-fit: cover;  /* 비율 유지하며 빈 공간 없이 채우기 (잘릴 수 있음) */
+            display: block;     /* 이미지 하단 미세한 공백 제거 */
+}
+
+
+
+
+
+
+
+        /* Overlay 페이지 기본 스타일   */
+
+        #overlay-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95) ;
+            z-index: 9999;
+            display: none;
+            overflow-y: auto;
+        }
+
+       #wrap-overlay {
+        margin: 20px;
+
+}
+
+        #overlay-page.active {
+            display: block;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        #main-overlay {
+    margin-top: 90px;
+    margin-bottom: 50px; /* 바닥 여백 추가 */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5칸으로 나눔 */
+    column-gap: 20px; /* 칸 사이 간격 */
+    row-gap: 80px;    /* 위아래 층 사이 간격 (시원하게 띄움) */
+    
+    font-family: "Pretendard", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.7;
+    align-items: start; /* 텍스트와 이미지가 윗선에 맞춰 정렬됨 */
+}
+
+#main-overlay img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+#main-overlay .p1, .p2, .p3, .p4, .p6, .p8{
+    background-color: black;
+    color: white;
+}
+
+/* 1. 첫 번째 줄: 프로젝트 정보(좌) & 소개글(우) */
+#main-overlay .p1 {
+    grid-column: 1 / 3; /* 1~2번 칸 */
+    grid-row: 1;        /* 첫 번째 줄 */
+    margin: 0;
+}
+
+#main-overlay .p2 {
+    grid-column: 4 / 6; /* 4~5번 칸 */
+    grid-row: 1;        /* 첫 번째 줄 */
+    margin: 0;
+}
+
+/* 2. 두 번째 줄: 런던 시트 설명(좌) & 이미지(우) */
+/* HTML 순서와 상관없이 위치를 강제 지정합니다 */
+#main-overlay .p4 {  /* 텍스트 */
+    grid-column: 1 / 3;
+    grid-row: 2;
+    margin: 0;
+}
+
+#main-overlay .p3 {  /* 이미지 */
+    grid-column: 4 / 6;
+    grid-row: 2;
+    margin: 0;
+    background-color: black;
+    padding: 10px;
+}
+
+/* 3. 세 번째 줄: 모듈 설명(좌) & 이미지(우) */
+#main-overlay .p6 {  /* 텍스트 */
+    grid-column: 1 / 3;
+    grid-row: 3;
+    margin: 0;
+}
+
+#main-overlay .p5 {  /* 이미지 */
+    width: 50%;
+    grid-column: 5 / 6;
+    grid-row: 3;
+    margin: 0;
+}
+
+#main-overlay .p7 {  
+    width: 100%;
+    grid-column: 2 / 5;
+    grid-row: 4;
+    margin: 0;
+    background-color: black;
+    padding: 10px;
+}
+
+#main-overlay .p8 {  
+    width: 100%;
+    grid-column: 2 / 5;
+    grid-row: 5;
+    margin: 0;
+}
+
+#main-overlay .mockupIMG{
+    grid-row: 6;
+    margin: 0;
+}
+
+.mockupIMG img{
+    grid-row: 6;        /* 6번째 줄에 위치 */
+    width: 100%;        /* 너비 꽉 채움 */
+    height: 100%;       /* 높이 꽉 채움 (필요시) */
+    aspect-ratio: 1/1;  /* (선택사항) 정사각형 비율 유지하고 싶다면, 아니면 auto */
+    overflow: hidden;   /* 넘치는 이미지 자르기 */
+    margin: 0;
+}
+
+
+
+
+
+
+
+        #page-slider {
+    position: fixed;
+    top: 0;
+    right: -200%; /* 화면 오른쪽 밖에 숨김 */
+    width: 100vw; /* 화면 전체 너비 */
+    height: 100vh; /* 화면 전체 높이 */
+    background: #fff;
+    z-index: 9999; /* 제일 위에 뜨도록 */
+    transition: right 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* 부드러운 슬라이딩 효과 */
+    box-shadow: -10px 0 20px rgba(0,0,0,0.2); /* 그림자 */
+}
+
+#page-slider.active {
+    right: 0; /* 화면 꽉 차게 등장 */
+}
+
+#content-frame {
+    width: 100%;
+    height: 100%;
+    border: none; /* iframe 테두리 제거 */
+    display: block;
+}

@@ -10,11 +10,11 @@ let densityX = 1.0;
 let densityY = 1.0;
 let moduleBoost = 1.0;
 
-// 타일 기본 크기
 const BASE_TILE_WIDTH = 200;
 const BASE_TILE_HEIGHT = 340;
 
-// 화면 초기 사이즈 설정
+
+// 캔버스 리사이즈
 function resizeCanvas() {
     canvas.width = window.innerWidth - 260;
     canvas.height = window.innerHeight;
@@ -24,7 +24,7 @@ window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 
 
-// 좌상단 기준 타일 렌더
+// 타일 기본 모양
 function drawTileBase() {
     ctx.fillRect(170, 5, 15, 15);
     ctx.fillRect(150, 20, 40, 15);
@@ -49,7 +49,7 @@ function drawTileBase() {
 }
 
 
-// 타일 하나 렌더
+// 타일 렌더
 function drawTile() {
     ctx.save();
     ctx.rotate(rotation);
@@ -58,7 +58,7 @@ function drawTile() {
 }
 
 
-// 전체 패턴 렌더링
+// 전체 패턴 렌더
 function drawPattern() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -67,7 +67,6 @@ function drawPattern() {
 
     ctx.save();
 
-    // 회전 중심 잡기
     ctx.translate(canvas.width / 2, canvas.height / 2);
     ctx.rotate(patternRot);
     ctx.translate(-canvas.width / 2, -canvas.height / 2);
@@ -77,7 +76,6 @@ function drawPattern() {
     const tileW = BASE_TILE_WIDTH * scale * densityX;
     const tileH = BASE_TILE_HEIGHT * scale * densityY;
 
-    // moduleBoost 값으로 여백 메우는 타일 개수 추가
     const boostedWidth = canvas.width * moduleBoost;
     const boostedHeight = canvas.height * moduleBoost;
 
@@ -102,7 +100,7 @@ function drawPattern() {
 }
 
 
-// 랜덤 패턴 생성
+// 무작위 패턴 생성
 function randomize() {
     scale = Math.random() * 1.7 + 0.3;
     rotation = Math.random() * Math.PI * 2;
@@ -129,6 +127,22 @@ function randomize() {
 }
 
 
+// PNG/JPG 저장 기능
+function saveAsPNG() {
+    const link = document.createElement('a');
+    link.download = 'pattern.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+}
+
+function saveAsJPG() {
+    const link = document.createElement('a');
+    link.download = 'pattern.jpg';
+    link.href = canvas.toDataURL('image/jpeg', 0.95);
+    link.click();
+}
+
+
 // 이벤트 바인딩
 document.getElementById('scale').oninput = e => { scale = Number(e.target.value); drawPattern(); };
 document.getElementById('rotation').oninput = e => { rotation = Number(e.target.value); drawPattern(); };
@@ -141,6 +155,19 @@ document.getElementById('patternColor').oninput = e => { patternColor = e.target
 document.getElementById('bgColor').oninput = e => { bgColor = e.target.value; drawPattern(); };
 
 document.getElementById('randomBtn').onclick = randomize;
+document.getElementById('savePngBtn').onclick = saveAsPNG;
+document.getElementById('saveJpgBtn').onclick = saveAsJPG;
 
-// 첫 렌더링
 drawPattern();
+
+document.getElementById("back-link").addEventListener("click", function(e) {
+        e.preventDefault(); // 링크 이동 막기
+        
+        // 부모 창(index.html)에 있는 closeSlider 함수 실행
+        if (window.parent && window.parent.closeSlider) {
+            window.parent.closeSlider();
+        } else {
+            // 만약 iframe이 아니라 그냥 열었을 경우를 대비한 예외처리
+            window.location.href = "index.html";
+        }
+    });

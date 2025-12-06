@@ -3,42 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BSPG | 홈</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="data/favicon/favicon_1.png" type="image/x-icon">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="shortcut icon" href="data/favicon_main_1.png" type="image/x-icon">
+    <title>BSPG</title>
 </head>
 <body>
     <div id="wrap">
         <div id="header">
-            <div class="logo">
-                <p>버스 패턴 생성기</p>
-                <p>Bus Seat Pattern Generator</p>
+            <div class="header-logo">
+                BSPG
             </div>
-            <div class="header-button">
-                <a href="pattern2.html"><p>패턴 생성기 바로가기</p></a>
+            <div class="header-nav">
+                <a href="pattern2.html">패턴 생성하러 가기</a>
             </div>
         </div>
         <div id="main">
-            <div class="context">
-                이번 프로젝트는 이동수단의 모켓(Moquette) 패턴이 가진 역사적 의미에 주목하는 것에서 출발합니다. 모켓 패턴은 기차나 버스 시트 커버에 사용되며 뛰어난 내구성과 독특한 디자인으로 오랫동안 사용되어 왔고, 나아가 문화와 시대상을 반영하는 시각적 레퍼런스로 기능해왔습니다. 현재 우리나라에서도 여전히 모켓 패턴을 버스 시트에 적용하고 있지만, 이러한 디자인을 쉽게 참고하거나 새로운 디자인을 시도할 수 있는 체계적인 툴은 부족한 실정입니다. 따라서 본 프로젝트의 목표는 누구나 손쉽게 고유한 모켓 패턴을 직접 디자인하고 이를 레퍼런스로 활용할 수 있도록 '모켓 패턴 생성기'를 제작하는 것입니다. 이 생성기는 사용자가 색상, 반복 구조 등을 간단하게 조합하여 새로운 패턴을 만들어낼 수 있도록 하여 버스 시트를 넘어 의자 시트에 들어갈 패턴을 제작하는 것을 도와줍니다.
+            <div class="grid-content">
+                <img src="data/img1.png" alt="">
             </div>
-            <div class="imgContainer">
-                <img src="data/BSPG_img_1.png" alt="">
+            <div class="grid-content">
+                <img src="data/img2.png" alt="">
             </div>
-            <div class="imgContainer">
-                <img src="data/BSPG_img_2.png" alt="">
+            <div class="grid-content">
+                <img src="data/img3.png" alt="">
             </div>
+            <div class="grid-content">
+                <img src="data/img4.png" alt="">
+            </div>
+            <div class="grid-content">
+                <img src="data/img5.png" alt="">
+            </div>
+            <div class="grid-content">
+                <img src="data/img6.png" alt="">
+            </div>
+            <div class="grid-content">
+                <img src="data/img7.png" alt="">
+            </div>
+            <div class="grid-content">
+                <img src="data/img8.png" alt="">
+            </div>
+            <div class="grid-content">
+                <img src="data/img9.png" alt="">
+            </div>
+            <div class="grid-content">
+                <img src="data/img10.png" alt="">
+            </div>
+            <div class="grid-content">
+                <img src="data/img11.png" alt="">
+            </div>
+            <div class="grid-content">
+                <img src="data/img12.png" alt="">
+            </div>
+            <div class="grid-content">
+                <img src="data/img13.png" alt="">
+            </div>
+            <div class="grid-content">
+                <img src="data/img14.png" alt="">
+            </div>
+            <div class="grid-content">
+                <img src="data/img15.png" alt="">
+            </div>
+
+        <div id="page-slider">
+            <iframe id="content-frame" src=""></iframe>
         </div>
-        <div id="footer">
-                <ul>
-                    <li>권호준, 양예슬, 임세은, 유승현</li>
-                    <li>계원예술대학교 디지털디자인 기말 프로젝트</li>
-                    <li>25.11.17-12.08</li>
-                </ul>
-        </div>
-    </div>
+        
+    <!-- Overlay가 로드될 영역 -->
+    <div id="overlay-page"></div>
+
+<script>
+  const overlay = document.getElementById("overlay-page");
+  const mainLogo = document.querySelector("#header .header-logo");
+
+  function toggleOverlay() {
+      if (overlay.classList.contains("active")) {
+          overlay.classList.remove("active");
+          overlay.innerHTML = "";
+      } else {
+          loadPage("overlay.html");
+      }
+  }
+
+  // 메인 로고 클릭 시
+  mainLogo.addEventListener("click", toggleOverlay);
+
+  // overlay 내부 로고는 동적으로 생성되므로 loadPage 안에서 이벤트 추가
+  function loadPage(url) {
+      fetch(url)
+          .then(res => res.text())
+          .then(html => {
+              overlay.innerHTML = html;
+              overlay.classList.add("active");
+              window.scrollTo(0, 0);
+
+              // overlay 안에 있는 로고에도 닫기 기능 추가
+              const innerLogo = overlay.querySelector(".header-logo");
+              if (innerLogo) {
+                  innerLogo.style.cursor = "pointer";
+                  innerLogo.addEventListener("click", toggleOverlay);
+              }
+          });
+  }
+
+  const slider = document.getElementById("page-slider");
+  const iframe = document.getElementById("content-frame");
+  const linkBtn = document.querySelector(".header-nav a"); // "패턴 생성하러 가기" 버튼
+
+  // 2. 링크 클릭 시 슬라이드 작동 함수
+  linkBtn.addEventListener("click", function(e) {
+      e.preventDefault(); // 페이지 이동 막기
+      
+      // iframe에 주소 주입 (이때 로딩 시작)
+      iframe.src = "pattern2.html";
+      
+      // 슬라이드 등장
+      slider.classList.add("active");
+  });
+
+  // 3. 자식 페이지(pattern2)에서 닫기 요청을 받을 함수 (창 닫기용)
+  window.closeSlider = function() {
+      slider.classList.remove("active");
+      
+      // 애니메이션이 끝난 후 iframe 내용 비우기 (성능 최적화)
+      setTimeout(() => {
+          iframe.src = ""; 
+      }, 500); 
+  }
+</script>
+
 </body>
 </html>

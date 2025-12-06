@@ -3,78 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>BSPG | 패턴 생성기</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-<link rel="shortcut icon" href="data/favicon/favicon_1.png" type="image/x-icon">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-        display: flex;
-        height: 100vh;
-        overflow: hidden;
-        background: #111;
-        font-family: "Noto Sans KR", sans-serif;
-        color: #000000;
-    }
-
-    /* 좌측 컨트롤 패널 */
-    #controls {
-      width: 260px;
-      background: #ffffff;
-      padding: 20px;
-      overflow-y: auto;
-      border-right: 2px solid #333;
-    }
-
-    #controls h2 {
-      font-size: 16px;
-      margin-bottom: 15px;
-    }
-
-    .control-group {
-      margin-bottom: 20px;
-    }
-
-    .control-label {
-      font-size: 13px;
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    input[type="range"] {
-      width: 100%;
-    }
-
-    input[type="color"] {
-      width: 100%;
-      height: 30px;
-      border: none;
-      margin-top: 6px;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      background: #333;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-    }
-    button:hover { background: #444; }
-
-    #canvas-wrapper { flex: 1; position: relative; }
-    #myCanvas { width: 100%; height: 100%; display: block; }
-  </style>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="shortcut icon" href="data/favicon/favicon_1.png" type="image/x-icon">
+    <link rel="stylesheet" href="patternPage.css">
 </head>
 <body>
-
   <div id="controls">
-    <h2>버스 패턴 생성기</h2>
-
-    <div class="control-group">
+    <div id="main-control">
+      <a href="#" id="back-link"><h2>BSPG</h2></a>
+      <div class="control-group">
       <label class="control-label">크기 조절</label>
       <input id="scale" type="range" min="0.2" max="2" step="0.1" value="1">
     </div>
@@ -99,7 +36,6 @@
       <input id="densityY" type="range" min="0.3" max="2" step="0.1" value="1">
     </div>
 
-    <!-- 새로 추가된 Module Boost -->
     <div class="control-group">
       <label class="control-label">개체 늘리기</label>
       <input id="moduleBoost" type="range" min="1" max="3" step="0.1" value="1">
@@ -114,14 +50,16 @@
       <label class="control-label">배경 색</label>
       <input id="bgColor" type="color" value="#ffffff">
     </div>
-
-    <button id="randomBtn">무작위 패턴 생성</button>
+    </div>
+    <div id="sub-control">
+      <button id="randomBtn">무작위 패턴 생성</button>
+      <button id="savePngBtn">PNG 저장</button>
+      <button id="saveJpgBtn">JPG 저장</button>
+    </div>
   </div>
-
   <div id="canvas-wrapper">
     <canvas id="myCanvas"></canvas>
   </div>
-
   <script src="pattern2.js"></script>
 </body>
 </html>
