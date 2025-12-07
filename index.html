@@ -69,7 +69,6 @@
             <iframe id="content-frame" src=""></iframe>
         </div>
         
-    <!-- Overlay가 로드될 영역 -->
     <div id="overlay-page"></div>
 
 <script>
@@ -85,10 +84,8 @@
       }
   }
 
-  // 메인 로고 클릭 시
   mainLogo.addEventListener("click", toggleOverlay);
 
-  // overlay 내부 로고는 동적으로 생성되므로 loadPage 안에서 이벤트 추가
   function loadPage(url) {
       fetch(url)
           .then(res => res.text())
@@ -97,7 +94,6 @@
               overlay.classList.add("active");
               window.scrollTo(0, 0);
 
-              // overlay 안에 있는 로고에도 닫기 기능 추가
               const innerLogo = overlay.querySelector(".header-logo");
               if (innerLogo) {
                   innerLogo.style.cursor = "pointer";
@@ -108,24 +104,19 @@
 
   const slider = document.getElementById("page-slider");
   const iframe = document.getElementById("content-frame");
-  const linkBtn = document.querySelector(".header-nav a"); // "패턴 생성하러 가기" 버튼
+  const linkBtn = document.querySelector(".header-nav a");
 
-  // 2. 링크 클릭 시 슬라이드 작동 함수
   linkBtn.addEventListener("click", function(e) {
-      e.preventDefault(); // 페이지 이동 막기
+      e.preventDefault(); 
       
-      // iframe에 주소 주입 (이때 로딩 시작)
       iframe.src = "pattern2.html";
       
-      // 슬라이드 등장
       slider.classList.add("active");
   });
 
-  // 3. 자식 페이지(pattern2)에서 닫기 요청을 받을 함수 (창 닫기용)
   window.closeSlider = function() {
       slider.classList.remove("active");
       
-      // 애니메이션이 끝난 후 iframe 내용 비우기 (성능 최적화)
       setTimeout(() => {
           iframe.src = ""; 
       }, 500); 

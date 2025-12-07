@@ -1,161 +1,156 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    body {
-        display: flex;
-        height: 100vh;
-        overflow: hidden;
-        background: #111;
-        color: #000000;
-    }
+body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: #111;
+    color: #000000;
+}
 
-    #controls {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 200px;
-        background: #ffffff;
-        padding: 20px;
-        overflow-y: auto;
-        border-right: 3px solid #333;
-        font-family: "Pretendard", sans-serif;
-    }
+#controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    background: #ffffff;
+    padding: 20px;
+    overflow-y: auto;
+    border-right: 3px solid #333;
+    font-family: "Pretendard", sans-serif;
+}
 
-    a{
-        text-decoration: none;
-        color: black;
-    }
-    
-    #controls h2 {
-        font-size: 3rem;
-        margin-bottom: 40px;
-        text-align: center;
-        font-weight: 900;
-    }
+a {
+    text-decoration: none;
+    color: black;
+}
 
-    .control-group {
-        margin-bottom: 20px;
-        text-align: center;
-        font-family: "Pretendard", sans-serif;
-        font-weight: 500;
-    }
+#controls h2 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: 900;
+}
 
-    .control-label {
-        font-size: 0.7rem;
-        margin-bottom: 15px;
-        margin-right: 10px;
-        padding: 5px;
-        display: inline-block;
-        color: rgb(0, 0, 0);
-        border: 1px solid black;
-        border-radius: 3px;
-    }
+.control-group {
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Pretendard", sans-serif;
+    font-weight: 500;
+}
 
-    /* 1. 기본 스타일 초기화 (필수) */
-    input[type="range"] {
-        -webkit-appearance: none; /* 크롬, 사파리 기본 스타일 제거 */
-        width: 50%;
-        height: 10px; /* 터치 영역 확보 */
-        background: transparent;
-        cursor: pointer;
-        margin: 5px 0; /* 위아래 여백 */
-    
+.control-label {
+    font-size: 0.7rem;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    padding: 5px;
+    display: inline-block;
+    color: rgb(0, 0, 0);
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 50%;
+    height: 10px;
+    background: transparent;
+    cursor: pointer;
+    margin: 5px 0;
 }
 
 input[type="range"]:focus {
     outline: none;
 }
 
-/* 2. 트랙 (지나가는 줄) 스타일링 - 크롬/사파리/엣지 */
 input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
-    height: 5px; /* 줄 두께 */
-    background: #000000; /* 줄 색상 (연한 회색) */
+    height: 5px;
+    background: #000000;
     border-radius: 3px;
     border: none;
 }
 
-/* 3. 썸 (동그란 손잡이) 스타일링 - 크롬/사파리/엣지 */
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    height: 15px; /* 손잡이 크기 */
+    height: 15px;
     width: 15px;
-    border-radius: 50%; /* 원형 */
-    background: #000000; /* 손잡이 색상 (진한 회색) */
-    margin-top: -6px; /* (트랙높이 - 썸높이) / 2 = 중앙 정렬 계산값 */
+    border-radius: 50%;
+    background: #000000;
+    margin-top: -6px;
     transition: transform 0.1s ease;
 }
 
-/* 4. 마우스 올렸을 때 & 클릭했을 때 효과 */
 input[type="range"]:hover::-webkit-slider-thumb {
-    background: #000; /* 호버 시 완전 검정 */
-    transform: scale(1.1); /* 살짝 커짐 */
+    background: #000;
+    transform: scale(1.1);
 }
 
 input[type="range"]:active::-webkit-slider-thumb {
-    transform: scale(0.95); /* 클릭 시 살짝 작아짐 (눌리는 느낌) */
+    transform: scale(0.95);
     background: #555;
 }
 
-/* 1. 컬러 인풋 기본 틀 */
 input[type="color"] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 50%;
-  height: 50px;
-  background-color: #ffffff;
-  border: 3px solid #000000;
-  cursor: pointer;
-  padding: 4px; /* 내부 색상 박스와의 간격 */
-  border-radius: 5px; /* 레트로한 직각 */
+    -webkit-appearance: none;
+    appearance: none;
+    width: 50%;
+    height: 50px;
+    background-color: #ffffff;
+    border: 3px solid #000000;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 5px;
 }
 
-/* 2. 내부 색상 박스 (크롬, 사파리, 엣지용) */
 input[type="color"]::-webkit-color-swatch-wrapper {
-  padding: 0; /* 불필요한 여백 제거 */
+    padding: 0;
 }
 
 input[type="color"]::-webkit-color-swatch {
-  border: 2px solid #000000;
-  border-radius: 0; 
+    border: 2px solid #000000;
+    border-radius: 0;
 }
 
-/* 3. 내부 색상 박스 (파이어폭스용) */
 input[type="color"]::-moz-color-swatch {
-  border: 2px solid #000000;
-  border-radius: 0;
+    border: 2px solid #000000;
+    border-radius: 0;
 }
 
-/* 4. 마우스 올렸을 때 효과 (선택 사항) */
 input[type="color"]:hover {
-  background-color: #eeeeee; /* 호버 시 배경 살짝 어둡게 */
+    background-color: #eeeeee;
 }
 
-    button {
-        width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        background: #333;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 0.8rem;
-        font-weight: 500;
-    }
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
 
-    button:hover {
-        background: #444;
-    }
+button:hover {
+    background: #444;
+}
 
-    #canvas-wrapper {
-        flex: 1;
-        position: relative; 
-    }
-    
-    #myCanvas { 
-        width: 100%;
-        height: 100%;
-        display: block; 
-    }
+#canvas-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+#myCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
